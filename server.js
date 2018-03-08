@@ -14,8 +14,6 @@ const User = sequelize.define("user", {
   }
 });
 
-console.log('asdasda');
-
 sequelize
   .authenticate()
   .then(() => {
