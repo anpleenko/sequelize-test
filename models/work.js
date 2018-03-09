@@ -1,14 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-  const Work = sequelize.define(
-    'Work',
+  const work = sequelize.define(
+    'work',
     {
       title: DataTypes.STRING,
     },
     {}
   )
-  Work.associate = function(models) {
+  work.associate = function(models) {
     // associations can be defined here
-    Work.belongsTo(models.User, {foreignKey: 'user_id'})
+    work.belongsTo(models.user, {foreignKey: 'user_id'})
   }
-  return Work
+  return work
 }

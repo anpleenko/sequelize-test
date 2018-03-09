@@ -10,10 +10,10 @@ const users = arrayByCount(100).map(() => ({
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Works', users, {})
+    return queryInterface.bulkInsert('works', users, {})
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Works', null, {})
+    return queryInterface.bulkDelete('works', null, {})
   },
 }

@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define(
-    'User',
+  const user = sequelize.define(
+    'user',
     {
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     {}
   )
 
-  User.associate = function(models) {
-    User.hasMany(models.Task, {foreignKey: 'user_id'})
-    User.hasMany(models.Work, {foreignKey: 'user_id'})
+  user.associate = function(models) {
+    user.hasMany(models.task, {foreignKey: 'user_id'})
+    user.hasMany(models.work, {foreignKey: 'user_id'})
     // associations can be defined here
   }
 
-  return User
+  return user
 }

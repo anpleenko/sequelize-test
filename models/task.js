@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
-  var Task = sequelize.define(
-    'Task',
+  var task = sequelize.define(
+    'task',
     {
       title: DataTypes.STRING,
       user_id: DataTypes.INTEGER,
@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     {}
   )
 
-  Task.associate = function(models) {
+  task.associate = function(models) {
     // associations can be defined here
-    Task.belongsTo(models.User, {foreignKey: 'user_id'})
+    task.belongsTo(models.user, {foreignKey: 'user_id'})
   }
-  return Task
+  return task
 }

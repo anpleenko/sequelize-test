@@ -11,7 +11,7 @@ app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-  db.User.findAll({order: [['id', 'ASC']], include: [db.Task, db.Work]}).then(users => {
+  db.user.findAll({order: [['id', 'ASC']], include: [db.task, db.work]}).then(users => {
     res.send(users)
   })
 })
@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 app.post('/create_user', (req, res) => {
   const { firstName, lastName } = req.body
 
-  db.User.create({
+  db.user.create({
     firstName,
     lastName,
   }).then(user => {
