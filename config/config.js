@@ -1,33 +1,34 @@
 require('dotenv').config()
 
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize')
+const { DB_USER, DB_PASS, DB_HOST, DB_PORT } = process.env
 
 module.exports = {
   development: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
+    username: DB_USER,
+    password: DB_PASS,
+    database: DB_NAME,
+    host: DB_HOST,
     dialect: 'postgres',
-    port: process.env.DB_PORT,
+    port: DB_PORT,
     operatorsAliases: Sequelize.Op,
   },
   test: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
+    username: DB_USER,
+    password: DB_PASS,
+    database: DB_NAME,
+    host: DB_HOST,
     dialect: 'postgres',
-    port: process.env.DB_PORT,
+    port: DB_PORT,
     operatorsAliases: Sequelize.Op,
   },
   production: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
+    username: DB_USER,
+    password: DB_PASS,
+    database: DB_NAME,
+    host: DB_HOST,
     dialect: 'postgres',
-    port: process.env.DB_PORT,
+    port: DB_PORT,
     operatorsAliases: Sequelize.Op,
   },
 }
