@@ -11,7 +11,7 @@ app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-  db.User.findAll().then(users => {
+  db.User.findAll({order: [['id', 'ASC']], include: [db.Task, db.Work]}).then(users => {
     res.send(users)
   })
 })

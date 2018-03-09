@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+const Sequelize = require("sequelize");
+
 module.exports = {
   development: {
     username: process.env.DB_USER,
@@ -8,6 +10,7 @@ module.exports = {
     host: process.env.DB_HOST,
     dialect: 'postgres',
     port: process.env.DB_PORT,
+    operatorsAliases: Sequelize.Op,
   },
   test: {
     username: process.env.DB_USER,
@@ -16,6 +19,7 @@ module.exports = {
     host: process.env.DB_HOST,
     dialect: 'postgres',
     port: process.env.DB_PORT,
+    operatorsAliases: Sequelize.Op,
   },
   production: {
     username: process.env.DB_USER,
@@ -24,5 +28,6 @@ module.exports = {
     host: process.env.DB_HOST,
     dialect: 'postgres',
     port: process.env.DB_PORT,
+    operatorsAliases: Sequelize.Op,
   },
 }
