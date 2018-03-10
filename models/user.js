@@ -7,21 +7,17 @@ module.exports = (sequelize, DataTypes) => {
     {
       firstName: {
         type: DataTypes.STRING,
-        validate: {
-          notEmpty: true,
-        },
+        allowNull: false,
       },
       lastName: {
         type: DataTypes.STRING,
-        validate: {
-          notEmpty: true,
-        },
+        allowNull: false,
       },
       email: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           isEmail: true,
-          notEmpty: true,
         },
       },
       sex: {
@@ -36,6 +32,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   )
+
+  // https://gist.github.com/JesusMurF/9d206738aa54131a6e7ac88ab2d9084e
 
   // user.beforeCreate(function(user, options) {
   //   console.log(user.dataValues);
