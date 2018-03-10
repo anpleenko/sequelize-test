@@ -1,7 +1,10 @@
 export PROJECT_NAME = sequelize
 export DB_NAME = sequelize
 
-default: req local_settings db test end
+default:
+	@yarn start
+
+init: req local_settings db test end
 
 local_settings:
 	@echo "==> Emitting local development settings module"
@@ -29,11 +32,11 @@ loadseed:
 	@echo "==> Loading additional data fixtures"
 	./node_modules/.bin/sequelize db:seed:all
 
-run:
-	@yarn start
-
 test:
 	@echo "==> Run tests"
 
 end:
-	@echo "==> You can now run development server using 'make run' command"
+	@echo "==> You can now run development server using 'make' command"
+
+clean:
+	rm -rf yarn-error.log
