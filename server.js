@@ -4,28 +4,15 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const db = require('./models')
 const app = express()
+const routes = require('./routes')
 
 const { NODE_ENV, NODE_PORT } = process.env
 
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(require('morgan')('tiny'))
 
-app.get('/', (req, res) => {
-  db.user.findAll({order: [['id', 'ASC']], include: [db.task, db.work]}).then(users => {
-    res.send(users)
-  })
-})
-
-app.post('/create_user', (req, res) => {
-  const { firstName, lastName } = req.body
-
-  db.user.create({
-    firstName,
-    lastName,
-  }).then(user => {
-    res.send({ message: 'success' })
-  })
-})
+routes(app)
 
 db.sequelize
   .authenticate()

@@ -16,6 +16,9 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
       },
+      slug: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         type: Sequelize.DATE,
       },
