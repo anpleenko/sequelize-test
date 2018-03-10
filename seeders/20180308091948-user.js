@@ -1,5 +1,6 @@
 const faker = require('faker')
 const arrayByCount = require('../helpers/arrayByCount')
+const randomEnum = require('../helpers/randomEnum')
 
 const users = arrayByCount(100).map(() => ({
   firstName: faker.name.firstName(),
@@ -7,6 +8,7 @@ const users = arrayByCount(100).map(() => ({
   email: faker.internet.email(),
   createdAt: new Date(),
   updatedAt: new Date(),
+  sex: randomEnum(['male', 'female']),
 }))
 
 module.exports = {

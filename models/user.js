@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
+      sex: {
+        type: Sequelize.STRING,
+        defaultValue: ''
+      },
     },
     {}
   )
