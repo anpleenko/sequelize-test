@@ -1,0 +1,12 @@
+# https://www.json2yaml.com/
+---
+extends:
+- airbnb-base
+- prettier
+plugins:
+- prettier
+env:
+  es6: true
+  browser: false
+rules:
+  prettier/prettier: error
