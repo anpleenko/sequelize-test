@@ -1,4 +1,5 @@
 const signupUser = require('./signupUser')
+const signinUser = require('./signInUser')
 
 const routes = app => {
   /**
@@ -8,14 +9,12 @@ const routes = app => {
     res.type('text/plain')
     res.send('User-agent: *\nDisallow: /')
   })
-  //
-  // app.get('/', (req, res) => {
-  //   db.user.findAll({order: [['id', 'ASC']], include: [db.task, db.work]}).then(users => {
-  //     res.send(users)
-  //   })
-  // })
-  //
+
+  /**
+   * login/logout routers
+   */
   app.use('/api/signup', signupUser)
+  app.use('/api/signin', signinUser)
 
   /**
    * Error handler

@@ -1,14 +1,16 @@
 const express = require('express')
 const db = require('../models')
+
 const router = express.Router()
 
-router.post('/', async (req, res, next) => {
-  const { firstName, lastName, email } = req.body
+router.post('/', async (req, res) => {
+  const { firstName, lastName, password, email } = req.body
 
   db.user
     .create({
-      firstName,
-      lastName,
+      firstName: firstName || '',
+      lastName: lastName || '',
+      password,
       email,
     })
     .then(user => {

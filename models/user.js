@@ -1,5 +1,7 @@
 const Hashids = require('hashids')
-const hashids = new Hashids(process.env.APP_SECRET_SALT, process.env.APP_HASH_LENGTH)
+const bcrypt = require('bcrypt-as-promised')
+
+const hashids = new Hashids(process.env.NODE_HASHIDS_SALT, process.env.NODE_HASHIDS_LENGTH)
 
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define(
@@ -7,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       firstName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        defaultValue: '',
       },
       lastName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        defaultValue: '',
       },
       email: {
         type: DataTypes.STRING,
@@ -27,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
       slug: {
         type: DataTypes.STRING,
       },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     },
@@ -35,10 +41,17 @@ module.exports = (sequelize, DataTypes) => {
 
   // https://gist.github.com/JesusMurF/9d206738aa54131a6e7ac88ab2d9084e
 
-  // user.beforeCreate(function(user, options) {
-  //   console.log(user.dataValues);
-  //   return user.slug = hashids.encode(user.id)
-  // })
+  user.beforeCreate(async function(user, options) {
+    console.log(user.dataValues)
+
+    try {
+      const salt = await bcrypt.genSalt(10)
+      const hash = await bcrypt.hash(user.dataValues.password, salt)
+      return (user.password = hash)
+    } catch (e) {
+      console.log(e)
+    }
+  })
 
   user.afterCreate(function(user, options) {
     user.slug = hashids.encode(user.dataValues.id)
@@ -46,9 +59,9 @@ module.exports = (sequelize, DataTypes) => {
   })
 
   user.associate = function(models) {
+    // associations can be defined here
     user.hasMany(models.task, { foreignKey: 'user_id' })
     user.hasMany(models.work, { foreignKey: 'user_id' })
-    // associations can be defined here
   }
 
   return user

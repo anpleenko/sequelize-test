@@ -3,7 +3,7 @@ const arrayByCount = require('../helpers/arrayByCount')
 const randomEnum = require('../helpers/randomEnum')
 const Hashids = require('hashids')
 
-const hashids = new Hashids(process.env.APP_SECRET_SALT, process.env.APP_HASH_LENGTH)
+const hashids = new Hashids(process.env.NODE_HASHIDS_SALT, process.env.NODE_HASHIDS_LENGTH)
 
 const users = arrayByCount(100).map(e => ({
   firstName: faker.name.firstName(),
