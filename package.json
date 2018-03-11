@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server"
   },
-  "author": "",
+  "author": "Alexander Anpleenko",
   "license": "MIT",
   "dependencies": {
     "babel-cli": "^6.26.0",
@@ -26,7 +26,9 @@
   "devDependencies": {
     "eslint": "^4.18.2",
     "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
     "husky": "^0.15.0-rc.8",
     "lint-staged": "^7.0.0",
     "prettier": "^1.11.1"
@@ -40,12 +42,14 @@
     }
   },
   "eslintConfig": {
-    "extends": "airbnb-base",
+    "extends": ["airbnb-base", "prettier"],
+    "plugins": ["prettier"],
     "env": {
       "es6": true,
       "browser": false
     },
     "rules": {
+      "prettier/prettier": "error",
       "brace-style": ["error", "stroustrup"],
       "comma-dangle": ["error", "never"],
       "no-unused-vars": ["warn"],
