@@ -23,8 +23,10 @@ router.post('/', async (req, res) => {
     return
   }
 
-  const token = jwt.sign(_.omit(user.dataValues, ['password']), process.env.NODE_JWT_SECRET)
-  res.json(token)
+  const userWithoutPassword = _.omit(user.dataValues, ['password'])
+  const token = jwt.sign(userWithoutPassword, process.env.NODE_JWT_SECRET)
+
+  res.json({ ...userWithoutPassword, token })
 })
 
 module.exports = router
