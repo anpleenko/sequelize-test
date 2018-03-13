@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
   }
 
   const userWithoutPassword = _.omit(user.dataValues, ['password'])
-  const token = jwt.sign(userWithoutPassword, process.env.NODE_JWT_SECRET)
+  const token = jwt.sign(userWithoutPassword, process.env.NODE_JWT_SECRET, { expiresIn: '48h' })
 
   res.json({ ...userWithoutPassword, token })
 })
