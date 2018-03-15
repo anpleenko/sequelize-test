@@ -1,5 +1,7 @@
 const signupUser = require('./signupUser')
 const signinUser = require('./signInUser')
+const userRoutes = require('./userRoutes')
+const checkToken = require('../middlewares/checkToken')
 
 const routes = app => {
   /**
@@ -15,6 +17,11 @@ const routes = app => {
    */
   app.use('/api/signup', signupUser)
   app.use('/api/signin', signinUser)
+
+  /**
+   * chnage user info
+   */
+  app.use('/api/user/change', checkToken, userRoutes)
 
   /**
    * Error handler

@@ -1,10 +1,9 @@
-'use strict'
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.addColumn('users', 'sex', {
-      type: Sequelize.STRING,
+      type: Sequelize.ENUM,
       defaultValue: '',
+      values: ['male', 'female', ''],
     })
   },
 

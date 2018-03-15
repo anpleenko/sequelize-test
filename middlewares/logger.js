@@ -4,9 +4,8 @@ module.exports = function logger(req, res, next) {
   //   params: ${JSON.stringify(req.params)}
   //   body: ${JSON.stringify(req.body)}
   //   query: ${JSON.stringify(req.query)}
-  // `);
-
-  // headers: ${JSON.stringify(req.headers)}
+  //   headers: ${JSON.stringify(req.headers)}
+  // `)
 
   next()
 }

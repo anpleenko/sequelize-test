@@ -5,12 +5,14 @@ const bodyParser = require('body-parser')
 const db = require('./models')
 const app = express()
 const routes = require('./routes')
+const logger = require('./middlewares/logger')
 
 const { NODE_ENV, NODE_PORT } = process.env
 
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(require('morgan')('tiny'))
+app.use(logger)
 
 routes(app)
 

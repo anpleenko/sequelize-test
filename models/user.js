@@ -23,8 +23,9 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       sex: {
-        type: DataTypes.STRING,
         defaultValue: '',
+        type: DataTypes.ENUM,
+        values: ['male', 'female', ''],
       },
       slug: {
         type: DataTypes.STRING,
