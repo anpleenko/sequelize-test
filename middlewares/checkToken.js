@@ -9,7 +9,7 @@ const checkToken = async (req, res, next) => {
   }
 
   try {
-    const tokenObj = jwt.verify(token, process.env.NODE_JWT_SECRET)
+    var tokenObj = jwt.verify(token, process.env.NODE_JWT_SECRET)
   } catch ({ message }) {
     res.status(403).json({ message })
     return
